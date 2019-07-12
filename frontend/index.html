@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <title>Myjunoon</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <link rel="stylesheet" href="css/modmain.css">
+        <link rel="stylesheet" href="css/modnav.css">
+    </head>
+
+    <body>
+                 
+        
+
+        <div class="ui sidebar inverted vertical menu">
+            <h2 class="ui inverted header">
+                <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
+                Guest
+              </h2>
+              <br>
+
+    
+            <a class="item">
+              <i class="youtube icon"></i>
+              We On Youtube
+            </a>
+
+            <a class="item">
+              <i class="microphone icon"></i>
+              Nominate A Speaker
+            </a>
+
+            <a class="item">
+              <i class="logout icon"></i>
+              Logout
+            </a>
+        </div>
+        <div class="pusher">
+            <!-- Site content !-->
+              <!--Top Nav-->
+              <div class="ui fixed inverted menu">
+                <a class=" item" onclick="sidebar()">
+                  <i class="bars icon" id="navbar"></i>
+                </a>
+                
+                <img  src="images/logomin.png" height="40px" alt="logo">
+
+                <a class="item  right">
+                    <i class="bell icon" id="navbar"></i>
+                </a>
+              
+               </div> 
+
+               <br>
+               <!--Video Category-->
+               
+                  <div class="ui top inverted  segment" >
+                      <div class="ui fluid secondary inverted three item  pointing menu" >
+                        <a class="active item">
+                          Recommended
+                        </a>
+                        <a class="item">
+                          Latest
+                        </a>
+                        <a class="item">
+                          Most Viewed
+                        </a>
+                      </div>
+                    </div>
+
+                     <!--Bottom Nav-->
+                    <div id="bottombar" class="ui labeled tiny inverted bottom fixed icon three item menu">
+                          <a class="item">
+                            <i class="home red icon"></i>
+                            Home
+                          </a>
+                          <a class="item">
+                            <i class="compass red icon"></i>
+                            Discover
+                          </a>
+                          <a class="item">
+                            <i class="folder red icon"></i>
+                            Library
+                          </a>
+                    </div>
+
+               
+               
+
+            <!--Menue Ends Here-->
+
+            
+            <br>
+            <div class="ui container">
+                <div class="ui three stackable cards">
+                    <div class="card" onclick="window.location.href='video.html'">
+                      <div class="image">
+                        <img src="https://img.youtube.com/vi/pP44EPBMb8A/maxresdefault.jpg">
+                      </div>
+                      <div class="content">
+                        <a class="header">Kristy</a>
+                        <div class="description">
+                          Some Video!
+                        </div>
+                      </div>
+                      <div class="extra content">
+                          <span class="right floated">
+                            Joined in 2013
+                          </span>
+                          <span>
+                            <i class="user icon"></i>
+                            75 Friends
+                          </span>
+                        </div>
+                    </div>
+                    <div class="card">
+                      <div class="image">
+                        <img src="https://img.youtube.com/vi/NtQkz0aRDe8/maxresdefault.jpg">
+                      </div>
+                      <div class="content">
+                        <div class="description">
+                          Another One!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="image">
+                        <img src="https://img.youtube.com/vi/M7CkdB5z9PY/maxresdefault.jpg">
+                      </div>
+
+                      <div class="content">
+                        <a class="header">Just The Header | By Kurtz</a>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="image">
+                        <img src="https://img.youtube.com/vi/dGiQaabX3_o/maxresdefault.jpg">
+                      </div>
+                      <div class="content">
+                        <div class="description">
+                          Human Origins | By Gippe Jawawi
+                        </div>
+                      </div>
+                      <div class="extra content">
+                          <a>
+                              <i class="users icon"></i>
+                              2 Members
+                            </a>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="image">
+                        <img src="https://img.youtube.com/vi/jAhjPd4uNFY/maxresdefault.jpg">
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="image">
+                        <img src="https://img.youtube.com/vi/WSKi8HfcxEk/maxresdefault.jpg">
+                      </div>
+                    </div>
+
+
+                  </div>
+
+            </div>
+            
+            
+
+</div>
+   
+      <br><br><br><br><br>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" ></script>
+      <script>
+        function sidebar(){
+          $('.ui.sidebar').sidebar('toggle');
+        }
+      </script>
+    </body>
+</html>

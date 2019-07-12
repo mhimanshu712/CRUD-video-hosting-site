@@ -12,14 +12,26 @@
         
 
         <div class="ui sidebar inverted vertical menu">
+            <h2 class="ui inverted header">
+                <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
+                Guest
+              </h2>
+              <br>
+
+    
             <a class="item">
-              1
+              <i class="youtube icon"></i>
+              We On Youtube
             </a>
+
             <a class="item">
-              2
+              <i class="microphone icon"></i>
+              Nominate A Speaker
             </a>
+
             <a class="item">
-              3
+              <i class="logout icon"></i>
+              Logout
             </a>
         </div>
         <div class="pusher">
@@ -77,16 +89,16 @@
             </div>
 
             <div class="ui compact menu">
-              <a class="item">
-                <i class="like icon"></i>
+              <a class="item" id="likeButton">
+                <i class="like icon" id="likeButtonIcon"></i>
                 Like
               </a>
-              <a class="item">
+              <a class="item" href="#comment">
                 <i class="comment icon"></i>
                 Comment
               </a>
-              <a class="item ">
-                <i class="share icon"></i>
+              <a class="item " id="shareButton">
+                <i class="share icon" ></i>
                 Share
               </a>
             </div>
@@ -134,6 +146,7 @@
 
                       </div>
                     </div>
+                    <a id="comment"></a>
                     <form class="ui reply form">
                       <div class="field">
                         <input type="text" class="ui input float">
@@ -164,5 +177,6 @@
 
         $('.ui.accordion').accordion();
       </script>
+      <script src="js/modvideo.js"></script>
     </body>
 </html>

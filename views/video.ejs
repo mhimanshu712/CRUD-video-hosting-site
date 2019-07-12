@@ -1,0 +1,188 @@
+<html>
+    <head>
+        <title>Myjunoon</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <link rel="stylesheet" href="/css/modnav.css">
+        <link rel="stylesheet" href="/css/modvideo.css">
+    </head>
+
+    <body>
+                 
+        
+
+        <div class="ui sidebar inverted vertical menu">
+            <h2 class="ui inverted header">
+                <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
+                Guest
+              </h2>
+              <br>
+
+    
+            <a class="item">
+              <i class="youtube icon"></i>
+              We On Youtube
+            </a>
+
+            <a class="item">
+              <i class="microphone icon"></i>
+              Nominate A Speaker
+            </a>
+
+            <a class="item">
+              <i class="logout icon"></i>
+              Logout
+            </a>
+        </div>
+        <div class="pusher">
+            <!-- Site content !-->
+              <!--Top Nav-->
+              <div class="ui fixed inverted menu">
+                <a class=" item" onclick="sidebar()">
+                  <i class="bars icon" id="navbar"></i>
+                </a>
+                
+                <img  src="/images/logomin.png" height="40px" alt="logo">
+
+                <a class="item  right">
+                    <i class="bell icon" id="navbar"></i>
+                </a>
+              
+               </div> 
+
+               <br>
+               
+                     <!--Bottom Nav-->
+                    <div id="bottombar" class="ui labeled tiny inverted bottom fixed icon three item menu">
+                          <a class="item" href="/">
+                            <i class="home red icon"></i>
+                            Home
+                          </a>
+                          <a class="item" href="/guestmoderror">
+                            <i class="compass red icon"></i>
+                            Discover
+                          </a>
+                          <a class="item" href="/guestmoderror">
+                            <i class="folder red icon"></i>
+                            Library
+                          </a>
+                    </div>
+
+               
+               
+
+            <!--Menue Ends Here-->
+            <br>
+            <div class="container">
+                <div class='embed-container'><iframe src='
+                  <%= video.link %>
+                  ' frameborder='0' allowfullscreen></iframe></div>
+            </div>
+
+            <div class="ui styled  accordion">
+              <div class="title">
+                
+                <span id="vidtitle">
+                  <%= video.title %>
+                </span>
+                <i class="dropdown icon"></i>
+              </div>
+              <div class="content">
+                <p class="transition hidden">
+                  <%= video.story %>
+                </p>
+              </div>
+            </div>
+
+            <div class="ui compact menu">
+              <a class="item" id="likeButton">
+                <i class="like icon" id="likeButtonIcon"></i>
+                Like
+              </a>
+              <a class="item" href="#comment">
+                <i class="comment icon"></i>
+                Comment
+              </a>
+              <a class="item " id="shareButton">
+                <i class="share icon" ></i>
+                Share
+              </a>
+            </div>
+          
+
+            <br>
+
+            <!--Suggestions-->
+     
+
+
+
+            <br>
+            <!--Comments-->
+            <div class="ui container">
+                <div class="ui comments">
+                    <div class="comment">
+                      <a class="avatar">
+                        <img height="50px" src="https://semantic-ui.com/images/avatar/small/joe.jpg">
+                      </a>
+                      <div class="content">
+                        <a class="author">Joe Henderson</a>
+                        <div class="metadata">
+                          <div class="date">1 day ago</div>
+                        </div>
+                        <div class="text">
+                          <p>The hours, minutes and seconds stand as visible reminders that your effort put them all there. </p>
+                          <p>Preserve until your next run, when the watch lets you see how Impermanent your efforts are.</p>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="comment">
+                      <a class="avatar">
+                        <img height="50px" src="https://semantic-ui.com/images/avatar/small/christian.jpg">
+                      </a>
+                      <div class="content">
+                        <a class="author">Christian Rocha</a>
+                        <div class="metadata">
+                          <div class="date">2 days ago</div>
+                        </div>
+                        <div class="text">
+                          I re-tweeted this.
+                        </div>
+
+                      </div>
+                    </div>
+                    <a id="comment"></a>
+                    <form class="ui reply form">
+                      <div class="field">
+                        <input type="text" class="ui input float">
+                      </div>
+                      <div class="ui black submit icon button" onclick="window.location.href='/guestmoderror'">
+                        Add Comment
+                      </div>
+                    </form>
+                  </div>
+
+            </div>
+            
+
+
+
+
+        </div>
+            
+
+   
+      <br><br><br><br><br>
+      <script src="/js/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" ></script>
+      <script>
+        function sidebar(){
+          $('.ui.sidebar').sidebar('toggle');
+        }
+
+        $('.ui.accordion').accordion();
+      </script>
+      <script src="/js/modvideo.js"></script>
+    </body>
+</html>

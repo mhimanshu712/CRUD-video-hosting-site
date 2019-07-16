@@ -13,8 +13,8 @@ var Junkvid = mongoose.model("Junkvid",junkvidSchema);
 //     }
 // });
 
-// Junkvid.find({_id:"5d28a1cabd59db13fcfed25f"},function(err,obja){
-//     if(!err){
-//         console.log(obja);
-//     }
-// });
+Junkvid.find({},function(err,obja){
+    if(!err){
+         console.log(obja);
+     }
+ });

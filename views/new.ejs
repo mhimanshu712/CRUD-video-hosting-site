@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="one-half column" style="margin-top: 25%">
+        <hr>
+        <h2>Add a new entry: </h2>
+        <form method="POST" action="/newentry">
+          <select class="u-full-width">
+            <option value="0">Select Page</option>
+            <option value="1">Recommended</option>
+            <option value="2">Latest</option>
+            <option value="3">Most Viewed</option>
+            </select>
+            <input name="nwtitle" class="u-full-width" type="text" placeholder="Title of Video">
+            <input name="nwdes" class="u-full-width" type="text" placeholder="Description">
+            <input name="nwlink" class="u-full-width" type="text" placeholder="Video Link">
+            <input name="nwthumb" class=u-full-width" type="text" placeholder="Thumbnail File" >
+            <button class="u-full-width" type="submit">Done!</button>
+            </form>
+            
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

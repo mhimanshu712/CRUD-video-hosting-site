@@ -66,6 +66,13 @@ app.get('/video/:vidid',function(req,res){
     });
 });
 
+app.post('/video/:vidid/comment',function(req,res){
+    var vidid = req.params.vidid;
+    var nwcomment = req.body.nwcomment;
+    var nwuser="Guest";
+    var neuserprofile = "https://semantic-ui.com/images/avatar/small/christian.jpg";
+});
+
 app.get('/guestmoderror',function(req,res){
     res.render('guestmoderror');
 });

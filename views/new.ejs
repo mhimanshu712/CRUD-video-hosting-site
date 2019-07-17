@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>My Junoon:Admin :)</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -33,20 +33,20 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
+      <div class="one-half column" style="margin-top: 15%">
         <hr>
         <h2>Add a new entry: </h2>
         <form method="POST" action="/newentry">
-          <select class="u-full-width">
-            <option value="0">Select Page</option>
+          <select class="u-full-width" name="nwpage">
             <option value="1">Recommended</option>
             <option value="2">Latest</option>
             <option value="3">Most Viewed</option>
             </select>
             <input name="nwtitle" class="u-full-width" type="text" placeholder="Title of Video">
             <input name="nwdes" class="u-full-width" type="text" placeholder="Description">
-            <input name="nwlink" class="u-full-width" type="text" placeholder="Video Link">
-            <input name="nwthumb" class=u-full-width" type="text" placeholder="Thumbnail File" >
+            <input name="nwlink" class="u-full-width" type="text" placeholder="Video Link(embed link)">
+            <input name="nwthumb" class="u-full-width" type="text" placeholder="Thumbnail File Name" >
+            <input name="nwvalidate" class="u-full-width" type="text" placeholder="Validation Code" >
             <button class="u-full-width" type="submit">Done!</button>
             </form>
             

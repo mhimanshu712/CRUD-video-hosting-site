@@ -7,19 +7,23 @@ var conString= "mongodb://upgzjiozupezohnn0py3:jhINOuAepZOxNAGBBK7G@b5x4r2r6h6rm
 mongoose.connect(conString,{useNewUrlParser:true});
 
 var junkvidcollection = "trialvid";
+var junkvidlcollection = "trialvidl";
+var junkvidmcollection = "trialvidm";
+
 var junkvideocollection = "trialvideo";
 
 
 var junkvideoSchema = new mongoose.Schema({title:String,link:String,story:String,likes:Number,comments:Array,share:String});
 var Junkvideo = mongoose.model(junkvideocollection,junkvideoSchema);
 
-//function usedb(a,callback){
-        //junkvidcollection = junkvidcollection + a;
+var junkvidSchema = new mongoose.Schema({title:String,image:String,views:Number,link:String})
+var Junkvid = mongoose.model(junkvidcollection,junkvidSchema);
 
-        junkvidSchema = new mongoose.Schema({title:String,image:String,views:Number,link:String})
-        Junkvid = mongoose.model(junkvidcollection,junkvidSchema);
-        //callback();
-//}
+var junkvidlSchema = new mongoose.Schema({title:String,image:String,views:Number,link:String})
+var Junkvidl = mongoose.model(junkvidlcollection,junkvidSchema);
+
+var junkvidmSchema = new mongoose.Schema({title:String,image:String,views:Number,link:String})
+var Junkvidm = mongoose.model(junkvidmcollection,junkvidSchema);
 
 
 app.use(express.static('public'));
@@ -27,40 +31,29 @@ app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get('/',function(req,res){
-    //function todo(){
         Junkvid.find({},function(err,obja){
             if(!err){
                 res.render('videolis',{vidlis:obja,vidcat:1});
             }
         });
-    //}
-    //usedb("1",todo);
     
 });
 
 app.get('/latest',function(req,res){
-    //function todo(){
-        Junkvid.find({},function(err,obja){
+        Junkvidl.find({},function(err,obja){
             if(!err){
                 res.render('videolis',{vidlis:obja,vidcat:2});
             }
         });
-
-    //}
-    //usedb("2",todo);
     
 });
 
 app.get('/mostviewed',function(req,res){
-    //function todo(){
-        Junkvid.find({},function(err,obja){
+        Junkvidm.find({},function(err,obja){
             if(!err){
                 res.render('videolis',{vidlis:obja,vidcat:3});
             }
         });
-
-    //}
-    //usedb("3",todo);
     
 });
 
@@ -86,29 +79,50 @@ app.post('/newentry',function(req,res){
     var nwpage = req.body.nwpage;
     var vidid;
     
-    //usedb("1");
     console.log("\nThe page name is : "+nwpage);
 
-    //if(nwvalidate=="mayjun"){
-        Junkvideo.create({title:nwtitle,story:nwdes,link:nwlink},function(err,obja){
-            vidid=obja._id;
-            console.log(obja);
-            console.log("\nVid id");
-            console.log(vidid);
-            Junkvid.create({title:nwtitle,image:nwthumb,views:0,link:vidid},function(err,objb){
-                if(!err){
-                    console.log(objb);
-                }
+    if (nwvalidate=="**mayjun"){
+        if (nwpage==1){
+            Junkvideo.create({title:nwtitle,story:nwdes,link:nwlink},function(err,obja){
+                vidid=obja._id;
+                console.log(obja);
+                console.log("\nVid id");
+                console.log(vidid);
+                Junkvid.create({title:nwtitle,image:nwthumb,views:0,link:vidid},function(err,objb){
+                    if(!err){
+                        console.log(objb);
+                    }
+                });
             });
-        });
-
-   // }
-         console.log("\nVid id now:");
-         console.log(vidid);
+        }else if(nwpage==2){
+            Junkvideo.create({title:nwtitle,story:nwdes,link:nwlink},function(err,obja){
+                vidid=obja._id;
+                console.log(obja);
+                console.log("\nVid id");
+                console.log(vidid);
+                Junkvidl.create({title:nwtitle,image:nwthumb,views:0,link:vidid},function(err,objb){
+                    if(!err){
+                        console.log(objb);
+                    }
+                });
+            });
+        }else if(nwpage==3){
+            Junkvideo.create({title:nwtitle,story:nwdes,link:nwlink},function(err,obja){
+                vidid=obja._id;
+                console.log(obja);
+                console.log("\nVid id");
+                console.log(vidid);
+                Junkvidm.create({title:nwtitle,image:nwthumb,views:0,link:vidid},function(err,objb){
+                    if(!err){
+                        console.log(objb);
+                    }
+                });
+            });
+        }
+    }
 
          res.redirect("/adminme");
 	
-
 });
 
 app.get('/adminme',function(req,res){

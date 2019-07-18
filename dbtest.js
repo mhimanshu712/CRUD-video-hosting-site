@@ -6,8 +6,10 @@ const bodyParser = require('body-parser');
 var conString= "mongodb://upgzjiozupezohnn0py3:jhINOuAepZOxNAGBBK7G@b5x4r2r6h6rmywn-mongodb.services.clever-cloud.com:27017/b5x4r2r6h6rmywn";
 mongoose.connect(conString,{useNewUrlParser:true});
 
+app.set('port',(process.env.PORT || 5000));
+
 var junkvidcollection = "trialvid";
-var junkvideocollection = "trialvideo";
+var junkvideocollection = "trialvideo";11
 
 function usedb(a,callback){
     junkvidcollection = junkvidcollection + a;
@@ -41,5 +43,5 @@ function junk(another){
     another();
 }
 
-usedb("3",junk(funk));
+usedb("3",junk,fuck);
 

@@ -29,6 +29,7 @@ var Junkvidm = mongoose.model(junkvidmcollection,junkvidSchema);
 app.use(express.static('public'));
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
+app.set('port',(process.env.PORT || 5000));
 
 app.get('/',function(req,res){
         Junkvid.find({},function(err,obja){
@@ -71,6 +72,8 @@ app.post('/video/:vidid/comment',function(req,res){
     var nwcomment = req.body.nwcomment;
     var nwuser="Guest";
     var neuserprofile = "https://semantic-ui.com/images/avatar/small/christian.jpg";
+
+    
 });
 
 app.get('/guestmoderror',function(req,res){
@@ -137,4 +140,4 @@ app.get('/adminme',function(req,res){
 });
 
 
-app.listen(8080);
+app.listen(app.get('port'));

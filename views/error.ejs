@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>Myjunoon</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <link rel="stylesheet" href="css/modnav.css">
+        <link rel="stylesheet" href="css/modvideo.css">
+    </head>
+
+    <body>
+                 
+        
+
+        <div class="ui sidebar inverted vertical menu">
+            <h2 class="ui inverted header">
+                <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
+                Guest
+              </h2>
+              <br>
+
+    
+            <a class="item">
+              <i class="youtube icon"></i>
+              We On Youtube
+            </a>
+
+            <a class="item">
+              <i class="microphone icon"></i>
+              Nominate A Speaker
+            </a>
+
+            <a class="item">
+              <i class="logout icon"></i>
+              Logout
+            </a>
+        </div>
+        <div class="pusher">
+            <!-- Site content !-->
+              <!--Top Nav-->
+              <div class="ui fixed inverted menu">
+                <a class=" item" onclick="sidebar()">
+                  <i class="bars icon" id="navbar"></i>
+                </a>
+                
+                <img  src="images/logomin.png" height="40px" alt="logo">
+
+                <a class="item  right">
+                    <i class="bell icon" id="navbar"></i>
+                </a>
+              
+               </div> 
+
+               <br>
+               
+
+               
+               
+
+            <!--Menue Ends Here-->
+            <br>
+          
+           <div class="ui placeholder segment">
+				<div class="ui icon header">
+					<i class="ban icon"></i>
+					Oh Snap, some error occureed!
+				</div>
+				<div class="ui primary button" onclick="window.location.href='/'">Go Back!</div>
+			</div>
+            
+
+
+
+
+        </div>
+            
+
+   
+      <br><br><br><br><br>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" ></script>
+      <script>
+        function sidebar(){
+          $('.ui.sidebar').sidebar('toggle');
+        }
+
+        $('.ui.accordion').accordion();
+      </script>
+    </body>
+</html>

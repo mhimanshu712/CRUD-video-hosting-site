@@ -126,7 +126,7 @@
                         <img height="50px" src="https://semantic-ui.com/images/avatar/small/joe.jpg">
                       </a>
                       <div class="content">
-                        <a class="author">Joe Henderson</a>
+                        <a class="author">Post Creator</a>
                         <div class="metadata">
                           <div class="date">1 day ago</div>
                         </div>
@@ -137,29 +137,36 @@
 
                       </div>
                     </div>
-                    <div class="comment">
-                      <a class="avatar">
-                        <img height="50px" src="https://semantic-ui.com/images/avatar/small/christian.jpg">
-                      </a>
-                      <div class="content">
-                        <a class="author">Christian Rocha</a>
-                        <div class="metadata">
-                          <div class="date">2 days ago</div>
-                        </div>
-                        <div class="text">
-                          I re-tweeted this.
-                        </div>
 
+                    <% video.comments.forEach(function(comment){ %>
+
+                      <div class="comment">
+                        <a class="avatar">
+                          <img height="50px" src="<%= comment.image %>">
+                        </a>
+                        <div class="content">
+                          <a class="author"><%= comment.name %></a>
+                          <div class="metadata">
+                            <div class="date"><%= comment.time.toLocaleString() %></div>
+                          </div>
+                          <div class="text">
+                            <%= comment.content %>
+                          </div>
+  
+                        </div>
                       </div>
-                    </div>
+
+
+                    <% }); %>
+                    
                     <a id="comment"></a>
-                    <form class="ui reply form">
+                    <form class="ui reply form" action="/video/<%= videoid %>/comment" method="POST">
                       <div class="field">
-                        <input type="text" class="ui input float">
+                        <input type="text" class="ui input float" name="content">
                       </div>
-                      <div class="ui black submit icon button" onclick="window.location.href='/guestmoderror'">
+                      <button class="ui black submit icon button" type="submit">
                         Add Comment
-                      </div>
+                      </button>
                     </form>
                   </div>
 

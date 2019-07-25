@@ -173,6 +173,15 @@ app.post('/newentry',function(req,res){
 	
 });
 
+app.get('/login',function(req,res){
+    res.render('login')
+
+});
+
+app.get('/register',function(req,res){
+    res.render('register');
+});
+
 
 app.get('/adminme',function(req,res){
 	res.render('new');

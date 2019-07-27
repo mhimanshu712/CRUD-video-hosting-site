@@ -23,22 +23,21 @@
 
                <br><br>
                <div class="ui raised very padded text inverted container segment">
-                <form class="ui inverted form">
+                  <% if (errormessage) {%>
+                    <div class="ui top red attached label" align="center" ><%= errormessage %></div>
+                  <% } %>
+                <form class="ui inverted form" method="POST" action="/register">
                     <div class="field">
-                      <label>First Name</label>
-                      <input type="text" name="first-name" placeholder="First Name">
+                      <label>Full Name</label>
+                      <input type="text" name="userfullname" placeholder="Full Name">
                     </div>
                     <div class="field">
-                        <label>Last Name</label>
-                        <input type="text" name="last-name" placeholder="Last Name">
-                      </div>
-                    <div class="field">
                       <label>Email</label>
-                      <input type="text" name="email" placeholder="Email">
+                      <input type="email" name="username" placeholder="Email">
                     </div>
                     <div class="field">
                         <label>Password</label>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="userpassword" placeholder="Password">
                     </div>
                
                     <button class="ui red button" type="submit">Register</button>

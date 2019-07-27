@@ -5,8 +5,29 @@ const bodyParser = require('body-parser');
 const moment = require('moment');
 const sscanf = require('scanf').sscanf;
 
-var conString= "mongodb://upgzjiozupezohnn0py3:jhINOuAepZOxNAGBBK7G@b5x4r2r6h6rmywn-mongodb.services.clever-cloud.com:27017/b5x4r2r6h6rmywn";
-mongoose.connect(conString,{useNewUrlParser:true});
+const passport = require('passport');
+const LocalSrtrat = require('passport-local');
+const passportLocalMongoose = require('passport-local-mongoose');
+var User =require('./models/user');
+
+mongoose.connect('mongodb+srv://nodejs:power@cluster0-wozei.mongodb.net/test?retryWrites=true&w=majority',{
+    useNewUrlParser:true,
+    useCreateIndex: true
+}).then(()=>{
+    console.log('connected to db');
+});
+
+app.use(require('express-session')({
+    secret: "Myjunoon is the coolest",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalSrtrat(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 var junkvidcollection = "ttrialvid";
 var junkvidlcollection = "ttrialvidl";
@@ -38,10 +59,21 @@ app.use(express.static('public'));
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.get('/',function(req,res){
+function isloggedIn(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/login');
+}
+
+
+var loggeduser;
+
+app.get('/',isloggedIn,function(req,res){
+    loggeduser = req.user;
         Junkvid.find({},function(err,obja){
             if(!err){
-                res.render('videolis',{vidlis:obja,vidcat:1});
+                res.render('videolis',{vidlis:obja,vidcat:1,loggeduser:loggeduser});
             }
         });
 
@@ -52,7 +84,7 @@ app.get('/',function(req,res){
 app.get('/latest',function(req,res){
         Junkvidl.find({},function(err,obja){
             if(!err){
-                res.render('videolis',{vidlis:obja,vidcat:2});
+                res.render('videolis',{vidlis:obja,vidcat:2,loggeduser:loggeduser});
             }
         });
     
@@ -61,15 +93,15 @@ app.get('/latest',function(req,res){
 app.get('/mostviewed',function(req,res){
         Junkvidm.find({},function(err,obja){
             if(!err){
-                res.render('videolis',{vidlis:obja,vidcat:3});
+                res.render('videolis',{vidlis:obja,vidcat:3,loggeduser:loggeduser});
             }
         });
     
 });
 
-app.post('/video/:vidid/comment',function(req,res){
+app.post('/video/:vidid/comment',isloggedIn,function(req,res){
     var vidid= req.params.vidid;
-    var nwname = "Guest";
+    var nwname = loggeduser.userfullname;
     var nwimage = "https://semantic-ui.com/images/avatar/small/christian.jpg";
     var nwcontent = req.body.content;
 
@@ -92,12 +124,12 @@ app.post('/video/:vidid/comment',function(req,res){
 
 });
 
-app.get('/video/:vidid',function(req,res){
+app.get('/video/:vidid', isloggedIn ,function(req,res){
     var vidid = req.params.vidid;
     Junkvideo.findOne({_id:vidid},function(err,obja){
         if(!err){
             obja.views += 1;
-            res.render('video',{video:obja,videoid:vidid});
+            res.render('video',{video:obja,videoid:vidid,loggeduser:loggeduser});
             obja.save(function(err,objb){
                 console.log("Views Updated");
             });
@@ -108,6 +140,10 @@ app.get('/video/:vidid',function(req,res){
 
 app.get('/guestmoderror',function(req,res){
     res.render('guestmoderror');
+});
+
+app.get('/error',function(req,res){
+    res.render('error',{errormessage:"Some Unknown Error Occured.",errorlink:'/'});
 });
 
 app.post('/newentry',function(req,res){
@@ -173,19 +209,61 @@ app.post('/newentry',function(req,res){
 	
 });
 
-app.get('/login',function(req,res){
-    res.render('login')
-
-});
-
-app.get('/register',function(req,res){
-    res.render('register');
-});
-
 
 app.get('/adminme',function(req,res){
-	res.render('new');
+    res.render('new');
 });
+
+
+
+app.get('/register',function(req,res){
+    res.render('register',{errormessage:''});
+});
+
+app.post('/register',function(req,res){
+    var userfullname = req.body.userfullname;
+    var username = req.body.username;
+    var userpassword = req.body.userpassword;
+
+    User.find({username:username},function(err,data){
+        if(!err){
+            if(!data){
+                    res.render('error',{errormessage:"The user already exists.",errorlink:'/register'});
+            }else{
+                User.register(new User({userfullname:userfullname,username:username}),userpassword,function(err,user){
+                    if(!err){
+                        res.render('login',{errormessage:'Yay! Registerd, Now Login.'});
+                    }
+                });
+
+            }
+        }
+    })
+
+    
+});
+
+app.get('/login',function(req,res){
+    res.render('login',{errormessage:''});
+    
+});
+
+app.get('/login',function(req,res){
+    res.render('login',{errormessage:'Wrong Credentials, Try again.'});
+    
+});
+
+app.post('/login',passport.authenticate("local",{
+    successRedirect:"/",
+    failureRedirect: "/loginfailed"
+}),function(req,res){
+});
+
+app.get('/logout',function(req,res){
+    req.logOut();
+    res.redirect('/');
+});
+
 
 
 app.listen(8080);

@@ -62,9 +62,9 @@
            <div class="ui placeholder segment">
 				<div class="ui icon header">
 					<i class="ban icon"></i>
-					Oh Snap, some error occureed!
+					<%= errormessage %>
 				</div>
-				<div class="ui primary button" onclick="window.location.href='/'">Go Back!</div>
+				<div class="ui primary button" onclick="window.location.href='<%= errorlink %>'">Go Back!</div>
 			</div>
             
 
@@ -78,12 +78,5 @@
       <br><br><br><br><br>
       <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" ></script>
-      <script>
-        function sidebar(){
-          $('.ui.sidebar').sidebar('toggle');
-        }
-
-        $('.ui.accordion').accordion();
-      </script>
     </body>
 </html>

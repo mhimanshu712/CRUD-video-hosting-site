@@ -22,11 +22,15 @@
                </div> 
 
                <br><br>
+               
                <div class="ui raised very padded text inverted container segment">
-                <form class="ui inverted form">
+                 <% if (errormessage) {%>
+                  <div class="ui top red attached label" align="center" ><%= errormessage %></div>
+                <% } %>
+                <form class="ui inverted form" method="POST" action="/login">
                     <div class="field">
                       <label>Email</label>
-                      <input type="text" name="email" placeholder="Email">
+                      <input type="text" name="username" placeholder="Email">
                     </div>
                     <div class="field">
                         <label>Password</label>

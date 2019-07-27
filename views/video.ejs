@@ -14,7 +14,7 @@
         <div class="ui sidebar inverted vertical menu">
             <h2 class="ui inverted header">
                 <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
-                Guest
+                <%= loggeduser.userfullname.split(' ')[0] %>
               </h2>
               <br>
 
@@ -29,7 +29,7 @@
               Nominate A Speaker
             </a>
 
-            <a class="item">
+            <a class="item" href='/logout'>
               <i class="logout icon"></i>
               Logout
             </a>

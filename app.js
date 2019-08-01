@@ -72,22 +72,48 @@ function isloggedIn(req,res,next){
     res.redirect('/login');
 }
 
-app.get('/',isloggedIn,function(req,res){
+function isloggedIng(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/guestmode/r');
+}
+
+app.get('/guestmode/:q',function(req,res){
+    if(req.params.q=='r'){
+        Junkvid.find({},function(err,obja){
+            if(!err){
+                res.render('videolis',{vidlis:obja,vidcat:1,guest:1})
+            }
+        });
+    }else if(req.params.q=='l'){
+        Junkvidl.find({},function(err,obja){
+            if(!err){
+                res.render('videolis',{vidlis:obja,vidcat:2,guest:1});
+            }
+        }); 
+    }else if(req.params.q=='m'){
+        Junkvidm.find({},function(err,obja){
+            if(!err){
+                res.render('videolis',{vidlis:obja,vidcat:3,guest:1});
+            }
+        });
+    }
+});
+
+app.get('/',isloggedIng,function(req,res){
     loggeduser = req.user;
         Junkvid.find({},function(err,obja){
             if(!err){
-                res.render('videolis',{vidlis:obja,vidcat:1});
+                res.render('videolis',{vidlis:obja,vidcat:1,guest:0});
             }
         });
-
-        
-    
 });
 
 app.get('/latest',function(req,res){
         Junkvidl.find({},function(err,obja){
             if(!err){
-                res.render('videolis',{vidlis:obja,vidcat:2});
+                res.render('videolis',{vidlis:obja,vidcat:2,guest:0});
             }
         });
     
@@ -96,7 +122,7 @@ app.get('/latest',function(req,res){
 app.get('/mostviewed',function(req,res){
         Junkvidm.find({},function(err,obja){
             if(!err){
-                res.render('videolis',{vidlis:obja,vidcat:3 });
+                res.render('videolis',{vidlis:obja,vidcat:3,guest:0});
             }
         });
     
@@ -132,13 +158,28 @@ app.get('/video/:vidid', isloggedIn ,function(req,res){
     Junkvideo.findOne({_id:vidid},function(err,obja){
         if(!err){
             obja.views += 1;
-            res.render('video',{video:obja,videoid:vidid });
+            res.render('video',{video:obja,videoid:vidid,guest:0});
             obja.save(function(err,objb){
                 console.log("Views Updated");
             });
         }
     });
 });
+
+app.get('/videog/:vidid',function(req,res){
+    var vidid = req.params.vidid;
+    Junkvideo.findOne({_id:vidid},function(err,obja){
+        if(!err){
+            obja.views += 1;
+            res.render('video',{video:obja,videoid:vidid,guest:1});
+            obja.save(function(err,objb){
+                console.log("Views Updated");
+            });
+        }
+    });
+});
+
+
 
 
 app.get('/guestmoderror',function(req,res){

@@ -11,28 +11,42 @@
                  
         
 
-        <div class="ui sidebar inverted vertical menu">
-            <h2 class="ui inverted header">
-                <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
-                <%= loggeduser.userfullname.split(' ')[0] %>
-              </h2>
-              <br>
+      <div class="ui sidebar inverted vertical menu">
+        <h2 class="ui inverted header">
+            <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
+            <% if (guest==0){ %>
+              <%= loggeduser.userfullname.split(' ')[0] %>
 
-    
-            <a class="item" href="https://www.youtube.com/channel/UCqkM4QOJrXRhTidMW_GpqZA">
-              <i class="youtube icon"></i>
-              We On Youtube
-            </a>
+            <% }else{%>
+              Guest
+            <% } %>
+          </h2>
+          <br>
 
-            <a class="item" href="https://docs.google.com/forms/d/e/1FAIpQLSedV0FPr5aVqC2_66uTcwPr1mAQIYtQDhu5TL0q215_lx3Btw/viewform">
-              <i class="microphone icon"></i>
-              Nominate A Speaker
-            </a>
 
-            <a class="item" href='/logout'>
-              <i class="logout icon"></i>
-              Logout
+          <% if(guest==1){ %>
+            <a class="item" href='/login'>
+              <i class="key icon"></i>
+              Login
             </a>
+          <% } %>
+
+        <a class="item" href="https://www.youtube.com/channel/UCqkM4QOJrXRhTidMW_GpqZA">
+          <i class="youtube icon"></i>
+          We On Youtube
+        </a>
+
+        <a class="item" href="https://docs.google.com/forms/d/e/1FAIpQLSedV0FPr5aVqC2_66uTcwPr1mAQIYtQDhu5TL0q215_lx3Btw/viewform">
+          <i class="microphone icon"></i>
+          Nominate A Speaker
+        </a>
+
+        <% if(guest==0){ %>
+          <a class="item" href='/logout'>
+            <i class="logout icon"></i>
+            Logout
+          </a>
+        <% } %>
         </div>
         <div class="pusher">
             <!-- Site content !-->
@@ -54,7 +68,7 @@
                
                      <!--Bottom Nav-->
                     <div id="bottombar" class="ui labeled tiny inverted bottom fixed icon three item menu">
-                          <a class="item" href="/">
+                          <a class="item" href="<% if(guest==1){ %>/guestmode<%}else{%>/<%}%>">
                             <i class="home red icon"></i>
                             Home
                           </a>

@@ -14,14 +14,19 @@
         <div class="ui sidebar inverted vertical menu">
             <h2 class="ui inverted header">
                 <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
-                <%= loggeduser.userfullname.split(' ')[0] %>
+                <% if (guest==0){ %>
+                  <%= loggeduser.userfullname.split(' ')[0] %>
+
+                <% }else{%>
+                  Guest
+                <% } %>
               </h2>
               <br>
 
 
-              <% if(loggeduser.fullname != 'Guest'){ %>
+              <% if(guest==1){ %>
                 <a class="item" href='/login'>
-                  <i class="logout icon"></i>
+                  <i class="key icon"></i>
                   Login
                 </a>
               <% } %>
@@ -36,7 +41,7 @@
               Nominate A Speaker
             </a>
 
-            <% if(loggeduser.fullname != 'Guest'){ %>
+            <% if(guest==0){ %>
               <a class="item" href='/logout'>
                 <i class="logout icon"></i>
                 Logout
@@ -68,21 +73,21 @@
                         <% if(vidcat==1){ %>
                           active
                         <% } %>
-                        item" href="/">
+                        item" href="<% if(guest==1){ %> /guestmode/r <% }else{ %> / <% } %>">
                           Recommended
                         </a>
                         <a class="
                         <% if(vidcat==2){ %>
                           active
                           <% } %>
-                        item" href="/latest">
+                        item" href="<% if(guest==1){ %>/guestmode/l<% }else{ %>/latest <% } %>">
                           Latest
                         </a>
                         <a class="
                         <% if(vidcat==3){ %>
                           active
                         <% } %>
-                        item" href="/mostviewed">
+                        item" href="<% if(guest==1){ %>/guestmode/m<% }else{ %>/mostviewed<%}%>">
                           Most Viewed
                         </a>
                       </div>
@@ -90,7 +95,7 @@
 
                      <!--Bottom Nav-->
                     <div id="bottombar" class="ui labeled tiny inverted bottom fixed icon three item menu">
-                          <a class="item">
+                          <a class="item" href="<% if(guest==1){ %>/guestmode<%}else{%>/<%}%>">
                             <i class="home red icon"></i>
                             Home
                           </a>
@@ -108,7 +113,6 @@
                
 
             <!--Menue Ends Here-->
-
             
             <br>
             <div class="ui container">
@@ -118,7 +122,7 @@
                       <div class="image">
                         <img src="
                         <%= vid.image %>     
-                        " onclick="window.location.href='/video/<%= vid.link %>'">
+                        " onclick="window.location.href='<% if (guest==1){ %>/videog/<%= vid.link %><% }else{ %>/video/<%= vid.link %><% } %>'">
                       </div>
                       <div class="content">
                         <div class="description">

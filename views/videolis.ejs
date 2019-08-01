@@ -18,7 +18,14 @@
               </h2>
               <br>
 
-    
+
+              <% if(loggeduser.fullname != 'Guest'){ %>
+                <a class="item" href='/login'>
+                  <i class="logout icon"></i>
+                  Login
+                </a>
+              <% } %>
+
             <a class="item" href="https://www.youtube.com/channel/UCqkM4QOJrXRhTidMW_GpqZA">
               <i class="youtube icon"></i>
               We On Youtube
@@ -29,10 +36,12 @@
               Nominate A Speaker
             </a>
 
-            <a class="item" href='/logout'>
-              <i class="logout icon"></i>
-              Logout
-            </a>
+            <% if(loggeduser.fullname != 'Guest'){ %>
+              <a class="item" href='/logout'>
+                <i class="logout icon"></i>
+                Logout
+              </a>
+            <% } %>
         </div>
         <div class="pusher">
             <!-- Site content !-->

@@ -29,6 +29,12 @@ passport.use(new LocalSrtrat(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//whatever we put in res.locals is available in all our templates.
+app.use(function(req,res,next){
+    res.locals.loggeduser = req.user;
+    next();
+});
+
 var junkvidcollection = "ttrialvid";
 var junkvidlcollection = "ttrialvidl";
 var junkvidmcollection = "ttrialvidm";
@@ -66,14 +72,11 @@ function isloggedIn(req,res,next){
     res.redirect('/login');
 }
 
-
-var loggeduser;
-
 app.get('/',isloggedIn,function(req,res){
     loggeduser = req.user;
         Junkvid.find({},function(err,obja){
             if(!err){
-                res.render('videolis',{vidlis:obja,vidcat:1,loggeduser:loggeduser});
+                res.render('videolis',{vidlis:obja,vidcat:1});
             }
         });
 
@@ -84,7 +87,7 @@ app.get('/',isloggedIn,function(req,res){
 app.get('/latest',function(req,res){
         Junkvidl.find({},function(err,obja){
             if(!err){
-                res.render('videolis',{vidlis:obja,vidcat:2,loggeduser:loggeduser});
+                res.render('videolis',{vidlis:obja,vidcat:2});
             }
         });
     
@@ -93,7 +96,7 @@ app.get('/latest',function(req,res){
 app.get('/mostviewed',function(req,res){
         Junkvidm.find({},function(err,obja){
             if(!err){
-                res.render('videolis',{vidlis:obja,vidcat:3,loggeduser:loggeduser});
+                res.render('videolis',{vidlis:obja,vidcat:3 });
             }
         });
     
@@ -101,7 +104,7 @@ app.get('/mostviewed',function(req,res){
 
 app.post('/video/:vidid/comment',isloggedIn,function(req,res){
     var vidid= req.params.vidid;
-    var nwname = loggeduser.userfullname;
+    var nwname = res.locals.loggeduser.userfullname;
     var nwimage = "https://semantic-ui.com/images/avatar/small/christian.jpg";
     var nwcontent = req.body.content;
 
@@ -129,7 +132,7 @@ app.get('/video/:vidid', isloggedIn ,function(req,res){
     Junkvideo.findOne({_id:vidid},function(err,obja){
         if(!err){
             obja.views += 1;
-            res.render('video',{video:obja,videoid:vidid,loggeduser:loggeduser});
+            res.render('video',{video:obja,videoid:vidid });
             obja.save(function(err,objb){
                 console.log("Views Updated");
             });

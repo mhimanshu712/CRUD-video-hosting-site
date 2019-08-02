@@ -131,7 +131,7 @@ app.get('/mostviewed',function(req,res){
 app.post('/video/:vidid/comment',isloggedIn,function(req,res){
     var vidid= req.params.vidid;
     var nwname = res.locals.loggeduser.userfullname;
-    var nwimage = "https://semantic-ui.com/images/avatar/small/christian.jpg";
+    var nwimage = res.locals.loggeduser.userimage;
     var nwcontent = req.body.content;
 
 
@@ -308,6 +308,9 @@ app.get('/logout',function(req,res){
     res.redirect('/');
 });
 
+app.get('/nocontent',function(req,res){
+    res.render('error',{errormessage:'There is nothing here for you, right now!'})
+})
 
 
 app.listen(8080);

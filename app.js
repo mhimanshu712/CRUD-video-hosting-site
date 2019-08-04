@@ -45,7 +45,7 @@ var commentSchema = new mongoose.Schema({name:String,time:{type:Date,default:Dat
 var Comment = mongoose.model("comment",commentSchema);
 
 
-var junkvideoSchema = new mongoose.Schema({title:String,link:String,story:String,likes:Number,comments:[commentSchema],share:String});
+var junkvideoSchema = new mongoose.Schema({title:String,link:String,story:String,likes:Number,views:Number,comments:[commentSchema],share:String});
 var Junkvideo = mongoose.model(junkvideocollection,junkvideoSchema);
 
 var junkvidSchema = new mongoose.Schema({title:String,image:String,views:{type:Number,default:0},link:String})
@@ -157,13 +157,47 @@ app.get('/video/:vidid', isloggedIn ,function(req,res){
     var vidid = req.params.vidid;
     Junkvideo.findOne({_id:vidid},function(err,obja){
         if(!err){
-            obja.views += 1;
             res.render('video',{video:obja,videoid:vidid,guest:0});
-            obja.save(function(err,objb){
-                console.log("Views Updated");
+        }
+    });
+
+    Junkvid.findOne({link:vidid},function(err,obja){
+        if(!err && obja != null){
+            obja.views += 1;
+            console.log('Found video!...');
+            console.log(obja);
+            obja.save(function(err,objab){
+            console.log('Views Updated');
+            console.log(objab);
             });
         }
     });
+
+    Junkvidl.findOne({link:vidid},function(err,obja){
+        if(!err && obja != null){
+            obja.views += 1;
+            console.log('Found video!...');
+            console.log(obja);
+            obja.save(function(err,objab){
+            console.log('Views Updated');
+            console.log(objab);
+            });
+        }
+    });
+
+    Junkvidm.findOne({link:vidid},function(err,obja){
+        if(!err && obja !=null){
+            obja.views += 1;
+            console.log('Found video!...');
+            console.log(obja);
+            obja.save(function(err,objab){
+            console.log('Views Updated');
+            console.log(objab);
+            });
+        }
+    });
+
+
 });
 
 app.get('/videog/:vidid',function(req,res){
@@ -177,6 +211,46 @@ app.get('/videog/:vidid',function(req,res){
             });
         }
     });
+
+
+    //Updating views count
+    Junkvid.findOne({link:vidid},function(err,obja){
+        if(!err && obja != null){
+            obja.views += 1;
+            console.log('Found video!...');
+            console.log(obja);
+            obja.save(function(err,objab){
+            console.log('Views Updated');
+            console.log(objab);
+            });
+        }
+    });
+
+    Junkvidl.findOne({link:vidid},function(err,obja){
+        if(!err &&  obja != null){
+            obja.views += 1;
+            console.log('Found video!...');
+            console.log(obja);
+            obja.save(function(err,objab){
+            console.log('Views Updated');
+            console.log(objab);
+            });
+        }
+    });
+
+    Junkvidm.findOne({link:vidid},function(err,obja){
+        if(!err && obja != null){
+            obja.views += 1;
+            console.log('Found video!...');
+            console.log(obja);
+            obja.save(function(err,objab){
+            console.log('Views Updated');
+            console.log(objab);
+            });
+        }
+    });
+
+
 });
 
 
@@ -306,6 +380,10 @@ app.post('/login',passport.authenticate("local",{
 app.get('/logout',function(req,res){
     req.logOut();
     res.redirect('/');
+});
+
+app.get('/loginfailed',function(req,res){
+    res.render('login',{errormessage:'Incorrect Username Or Password'});
 });
 
 app.get('/nocontent',function(req,res){

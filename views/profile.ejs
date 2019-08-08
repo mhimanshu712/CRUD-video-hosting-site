@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <title>Myjunoon</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <link rel="stylesheet" href="/css/modnav.css">
+        <link rel="stylesheet" href="/css/modvideo.css">
+    </head>
+
+    <body>
+                 
+        
+
+      <div class="ui sidebar inverted vertical menu">
+        <h2 class="ui inverted header">
+            <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
+            <% if (guest==0){ %>
+              <%= loggeduser.userfullname.split(' ')[0] %>
+
+            <% }else{%>
+              Guest
+            <% } %>
+          </h2>
+          <br>
+
+
+          <% if(guest==1){ %>
+            <a class="item" href='/login'>
+              <i class="key icon"></i>
+              Login
+            </a>
+          <% } %>
+
+        <a class="item" href="https://www.youtube.com/channel/UCqkM4QOJrXRhTidMW_GpqZA">
+          <i class="youtube icon"></i>
+          We On Youtube
+        </a>
+
+        <a class="item" href="https://docs.google.com/forms/d/e/1FAIpQLSedV0FPr5aVqC2_66uTcwPr1mAQIYtQDhu5TL0q215_lx3Btw/viewform">
+          <i class="microphone icon"></i>
+          Nominate A Speaker
+        </a>
+
+        <% if(guest==0){ %>
+          <a class="item" href='/logout'>
+            <i class="logout icon"></i>
+            Logout
+          </a>
+        <% } %>
+        </div>
+        <div class="pusher">
+            <!-- Site content !-->
+              <!--Top Nav-->
+              <div class="ui fixed inverted menu">
+                <a class=" item" onclick="sidebar()">
+                  <i class="bars icon" id="navbar"></i>
+                </a>
+                
+                <img  src="/images/logomin.png" height="40px" alt="logo">
+
+                <a class="item  right">
+                    <i class="bell icon" id="navbar"></i>
+                </a>
+              
+               </div> 
+
+               <br>
+               
+                     <!--Bottom Nav-->
+                    <div id="bottombar" class="ui labeled tiny inverted bottom fixed icon three item menu">
+                          <a class="item" href="<% if(guest==1){ %>/guestmode/r<%}else{%>/<%}%>">
+                            <i class="home red icon"></i>
+                            Home
+                          </a>
+                          <a class="item" href="/nocontent">
+                            <i class="compass red icon"></i>
+                            Discover
+                          </a>
+                          <a class="item" href="/nocontent">
+                            <i class="folder red icon"></i>
+                            Library
+                          </a>
+                    </div>
+
+               
+               
+
+            <!--Menue Ends Here-->
+           
+            
+
+
+
+
+        </div>
+            
+
+   
+      <br><br><br><br><br>
+      <script src="/js/jquery-3.4.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" ></script>
+      <script>
+        function sidebar(){
+          $('.ui.sidebar').sidebar('toggle');
+        }
+
+      </script>
+    </body>
+</html>

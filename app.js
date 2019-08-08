@@ -388,7 +388,13 @@ app.get('/loginfailed',function(req,res){
 
 app.get('/nocontent',function(req,res){
     res.render('error',{errormessage:'There is nothing here for you, right now!'})
-})
+});
+
+
+
+app.get('/profile',function(req,res){
+	res.render('profile',{guest:1});
+});
 
 
 app.listen(8080);

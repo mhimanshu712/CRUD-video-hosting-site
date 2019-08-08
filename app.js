@@ -396,6 +396,9 @@ app.get('/profile',function(req,res){
 	res.render('profile',{guest:1});
 });
 
+app.get('/favlis',function(req,res){
+	res.render('favlis',{guest:1});
+});
 
 app.listen(8080);
 

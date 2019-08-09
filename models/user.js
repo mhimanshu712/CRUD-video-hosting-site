@@ -5,7 +5,9 @@ var userSchema = new mongoose.Schema({
     userfullname:String,
     username: String,
     password: String,
-    userimage:{type:String,default:'/images/patrick.png'}
+    userimage:{type:String,default:'/images/patrick.png'},
+	userhistory:[String],
+	userfavourite:[String]
 });
 
 userSchema.plugin(passportLocalMongoose);

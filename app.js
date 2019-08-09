@@ -196,6 +196,18 @@ app.get('/video/:vidid', isloggedIn ,function(req,res){
             });
         }
     });
+	
+	// Update user history
+	User.findOne({username:res.locals.loggeduser.username},function(err,obja){
+		if(!err){
+			console.log(obja);
+			obja.userhistory.unshift(vidid);
+			obja.save(function(err,obja){
+				console.log('saved history append');
+			});
+		}
+		
+	});
 
 
 });

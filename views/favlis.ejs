@@ -89,6 +89,14 @@
            <br><br>
 			
 			<div class="maindish">
+				<% loggeduser.userhistory.forEach(function(obja){ %>
+					<div class="dumpling" onclick="window.location.href='/video/<%=obja%>'">
+						<img src="http://img.youtube.com/vi/<%=obja%>/mqdefault.jpg">
+						<div class="duptext">That Video | Games</div>
+					</div>
+					
+				<% }); %>
+				
 				<div class="dumpling">
 					<img src="http://img.youtube.com/vi/hT_nvWreIhg/mqdefault.jpg">
 					<div class="duptext">That Video | Games</div>

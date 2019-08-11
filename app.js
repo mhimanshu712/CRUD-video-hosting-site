@@ -198,15 +198,38 @@ app.get('/video/:vidid', isloggedIn ,function(req,res){
     });
 	
 	// Update user history
+	
+	
 	User.findOne({username:res.locals.loggeduser.username},function(err,obja){
 		if(!err){
 			console.log(obja);
 			obja.userhistory.unshift(vidid);
-			obja.save(function(err,obja){
-				console.log('saved history append');
-			});
+			obja.save();
 		}
 		
+	});
+	
+	User.findOne({username:res.locals.loggeduser.username},function(err,obja){
+		if(!err){
+			Junkvideo.findById(vidid,function(err,objb){
+				if(!err){
+					console.log('Video found*************');
+					console.log(objb);
+					console.log('Video found*************');
+					var vidlink=objb.link;
+					var vidtitle=objb.title;
+					obja.historyobj.unshift({link:vidlink,title:vidtitle});
+					console.log(objb);
+					obja.save(function(err,objc){
+						console.log('\n\n\nObja brownies\n\n');
+						console.log(objc);
+					});
+				}else{
+					console.log('******video not found');
+				}
+				
+			});
+		}
 	});
 
 

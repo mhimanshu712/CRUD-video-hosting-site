@@ -10,9 +10,10 @@ A previous version has been hosted [here](http://myjunoon.herokuapp.com)
 ### Technologies Used
 `node.js`, `express`, `mongo`, `passport`
 
-<img width='20%' src='http://darkstars.coffeecup.com/react/myju4.jpg'></img>
-<img width='20%' src='http://darkstars.coffeecup.com/react/myju1.jpg'></img>
-<img width='20%' src='http://darkstars.coffeecup.com/react/myju2.jpg'></img>
-<img width='20%' src='http://darkstars.coffeecup.com/react/myju3.jpg'></img>
-<img width='20%' src='http://darkstars.coffeecup.com/react/myju5.jpg'></img>
+<img width='30%' src='http://darkstars.coffeecup.com/react/myju4.jpg'></img>
+<img width='30%' src='http://darkstars.coffeecup.com/react/myju1.jpg'></img>
+<img width='30%' src='http://darkstars.coffeecup.com/react/myju2.jpg'></img>
+<img width='30%' src='http://darkstars.coffeecup.com/react/myju3.jpg'></img>
+<img width='30%' src='http://darkstars.coffeecup.com/react/myju5.jpg'></img>
+<img width='30%' src='http://darkstars.coffeecup.com/react/myju6.jpg'></img>
 
